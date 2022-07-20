@@ -6,12 +6,13 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
-export class FormUserSocial extends Component {
+export class FormUserProfile extends Component {
   continue = e => {
     e.preventDefault();
-    this.props.handleSubmit();
+    this.props.nextStep();
   };
 
   back = e => {
@@ -25,33 +26,23 @@ export class FormUserSocial extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Social Media
+        Enter Profile
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="github"
-            name="github"
-            label="Github"
+
+          <TextareaAutosize
+            id="profile"
+            name="profile"
+            label="Profile"
             fullWidth
-            autoComplete="given-name"
             variant="standard"
             onChange={handleChange}
-            defaultValue={values.github}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="linkedin"
-            name="linkedin"
-            label="Linkedin"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-            onChange={handleChange}
-            defaultValue={values.linkedin}
+            defaultValue={values.profile}
+            minRows={10}
+            placeholder="Enter profile..."
+            style={{ width: 700 }}
+
           />
         </Grid>
       </Grid>
@@ -65,7 +56,7 @@ export class FormUserSocial extends Component {
                     onClick={this.continue}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    Submit
+                    Next
                   </Button>
                 </Box>
     </React.Fragment>
@@ -73,4 +64,4 @@ export class FormUserSocial extends Component {
   }
 }
 
-export default FormUserSocial;
+export default FormUserProfile;

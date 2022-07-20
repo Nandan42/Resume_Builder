@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import FormUserDetails from "./components/FormUserDetails";
 import FormUserSocial from "./components/FormUserSocial";
+import FormUserProfile from "./components/FormUserProfile";
+import FormUserSkills from "./components/FormUserSkills";
+import FormUserEducation from "./components/FormUserEducation";
+import FormUserExperience from "./components/FormUserExperience";
 import axios from "axios"
 import { saveAs } from 'file-saver'
 import CssBaseline from '@mui/material/CssBaseline';
@@ -28,14 +32,50 @@ function getStepContent(step, values, prevStep, nextStep, handleChange, handleSu
                   values={values}
                 />
         )  ;
-      case 2:
+        case 2:
+            return (
+                      <FormUserProfile
+                      nextStep={nextStep}
+                      handleChange={handleChange}
+                      prevStep={prevStep}
+                      values={values}
+                    />
+            )  ;
+      case 3:
         return (
-                  <FormUserSocial
-                  handleSubmit={handleSubmit}
+                  <FormUserSkills
+                  nextStep={nextStep}
                   prevStep={prevStep}
                   handleChange={handleChange}
                   values={values}
                 />
+        )
+        case 4:
+          return (
+                    <FormUserEducation
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleChange}
+                    values={values}
+                  />
+          )
+          case 5:
+            return (
+                      <FormUserExperience
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      handleChange={handleChange}
+                      values={values}
+                    />
+            )
+        case 6:
+            return (
+                        <FormUserSocial
+                        handleSubmit={handleSubmit}
+                        prevStep={prevStep}
+                        handleChange={handleChange}
+                        values={values}
+                    />
         ) ;
       default:
         throw new Error('Unknown step');
@@ -52,10 +92,29 @@ export class Resume extends Component{
         lastname: '',
         email: '',
         phone: '',
+        profile: '',
+        skill1: '',
+        skill2: '',
+        skill3: '',
+        skill4: '',
+        skill5: '',
+        skill6: '',
+        college: '',
+        collegeYear: '',
+        collegeQualification: '',
+        collegeDescription: '',
+        company1: '',
+        role1: '',
+        startDate1: '',
+        endDate1: '',
+        experience1: '',
+        company2: '',
+        role2: '',
+        startDate2: '',
+        endDate2: '',
+        experience2: '',
         github: '',
         linkedin: '',
-        facebook: '',
-        instagram: ''
     }
 
 
@@ -87,11 +146,11 @@ export class Resume extends Component{
 
     render(){
         const {step} = this.state
-        const { firstname, lastName, email, phone, github, linkedin, facebook, instagram } = this.state;
-        const values = { firstname, lastName, email, phone, github, linkedin, facebook, instagram } 
+        const { firstname,lastname,email,phone,profile,skill1,skill2,skill4,skill5,skill6,college,collegeYear,collegeQualification,collegeDescription,company1,role1,startDate1,endDate1,experience1,company2,role2,startDate2,endDate2,experience2,github,linkedin } = this.state;
+        const values = { firstname,lastname,email,phone,profile,skill1,skill2,skill4,skill5,skill6,college,collegeYear,collegeQualification,collegeDescription,company1,role1,startDate1,endDate1,experience1,company2,role2,startDate2,endDate2,experience2,github,linkedin } 
         
 
-        const steps = ['User Details ', 'User socials'];
+        const steps = ['Personal Info', 'Profile', 'Skills', 'Education','Experience','Social Media'];
 
 
         const theme = createTheme();
@@ -110,14 +169,14 @@ export class Resume extends Component{
             >
               <Toolbar>
                 <Typography variant="h6" color="inherit" noWrap>
-                  Company name
+                  Resume Builder
                 </Typography>
               </Toolbar>
             </AppBar>
-            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
               <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                 <Typography component="h1" variant="h4" align="center">
-                  Checkout
+                  
                 </Typography>
                 <Stepper activeStep={step} sx={{ pt: 3, pb: 5 }}>
                   {steps.map((label) => (
