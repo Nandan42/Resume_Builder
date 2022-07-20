@@ -56,9 +56,6 @@ module.exports = (body) => {
                                         <li>${body.skill1}</li>
                                         <li>${body.skill2}</li>
                                         <li class="last">${body.skill3}</li>
-                                    </ul>
-
-                                    <ul class="talent">
                                         <li>${body.skill4}</li>
                                         <li>${body.skill5}</li>
                                         <li class="last">${body.skill6}</li>
@@ -108,6 +105,10 @@ module.exports = (body) => {
 
                 <div id="ft">
                     <p>${body.firstname} ${body.lastname} &mdash; <a href="${body.email}">${body.email}</a> &mdash; ${body.phone}</p>
+                </div>
+                <div id="ft">
+                    <p><a href="${body.github}">${body.github}</a> </p>
+                    <p><a href="${body.linkedin}">${body.linkedin}</a> </p>
                 </div>
 
             </div>
